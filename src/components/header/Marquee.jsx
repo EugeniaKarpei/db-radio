@@ -95,7 +95,7 @@ function Marquee({handleUpdate}) {
 
         let marqueeText = []
         for (let i = 0; i < marqueeNumber; i++){
-            marqueeText.push(<MarqueeText paused={isPaused.toString()}>{text}</MarqueeText>)
+            marqueeText.push(<MarqueeText key={`marquee-text-${i}`} paused={isPaused.toString()}>{text}</MarqueeText>)
         }
         return marqueeText
     }
