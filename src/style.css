@@ -1,0 +1,261 @@
+* {
+    margin: 0;
+}
+
+:root {
+    --primary-color: #443937;
+    --secondary-color: #3A3C34;
+    --accent-color: #A19775;
+    --background-color: #ECEAE3;
+  }
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Rubik', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    font-weight: 400;
+    color: var(--primary-color)
+}
+
+a {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.root {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* header section */
+
+header {
+    background-color: var(--background-color);
+}
+
+.music-player{
+    display: flex;
+}
+
+.music-player-box {
+    padding: 1.25rem 1.56rem;
+}
+
+.history-btn{
+    margin: 1.25rem 1.56rem;
+}
+
+.history-info {
+    padding-left: 1.5rem;
+}
+
+.header-top-box {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.player-btn {
+    width: 1.5rem;
+    height: 1.85rem;
+    padding-right: 1.125rem;
+}
+
+.history-btn {
+    width: 2.1rem;
+    height: 2.1rem;
+}
+
+.music-player > p {
+    margin: auto 0;
+}
+
+/* history dropdown section */
+
+.history-dropdown {
+    padding: 1rem 1.56rem;
+}
+
+.history-item {
+    font-size: 0.685rem;
+    display: grid;
+    grid-template-columns: 10% 85% 5%;
+    text-align: left;  
+    padding: 0.3rem 0;
+}
+
+.copy-btn {
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.copy-btn:hover {
+    font-size: 1rem;
+}
+
+.info-box {
+    background-color: white;
+    border-top: 1.4px solid var(--secondary-color);
+    border-bottom: 1.4px solid var(--secondary-color);
+    font-size: 0.875rem;
+    padding: 0.25em 0;
+}
+
+/* main section styles */
+
+main {
+    padding: 4rem 0;
+    height: 100%;
+}
+
+.main-content-box {
+    position: relative;
+    text-align: center;
+    height: 100%;
+    padding-top: 1rem;
+}
+
+.logo-img-box {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+img {
+    width: 100%;
+    max-width: 400px;
+}
+
+h1 {
+    color: var(--secondary-color);
+    font-family: 'Bowlby One SC', cursive;
+    font-size: 2rem;
+}
+
+/* styles for carousel component  */
+
+.carousel-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* carousel animation  */
+.animation-left-right::before {
+    position: absolute;
+    content: "";
+    background-color: white;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    animation: fadeLeft 4s ease forwards;
+}
+
+.animation-left-right::after {
+    position: absolute;
+    content: "";
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: white;
+    animation: fadeRight 4s ease backwards 10s;
+}
+
+@keyframes fadeLeft {
+    to {
+        left: 100%;
+    }
+
+}
+
+@keyframes fadeRight {
+    from {
+        left: 100%;
+    }
+
+    to {
+        right: 0;
+    }
+}
+
+.date-time-info {
+    width: 60%;
+}
+
+/* footer section styles */
+
+footer {
+    text-align: center;
+}
+
+.footer-info-box {
+    padding: 0.625rem 0 0.95rem;
+}
+
+.footer-info {
+    font-size: 0.625rem;
+    color: var(--accent-color);
+    padding-top: 0.5em;
+}
+
+/* additional styles and media queries */
+
+span {
+    padding-right: 1em;
+}
+
+.light {
+    color: var(--accent-color);
+}
+
+@media (min-width: 900px){
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    img {
+        max-width: 420px;
+    }
+
+    .history-btn {
+        margin: 1.25rem 2.56rem;
+    }
+
+    .music-player-box {
+        padding: 1.25rem 2.56rem;
+    }
+
+    .history-dropdown {
+        padding: 1rem 2.56rem;
+    }
+
+    .history-info {
+        padding-left: 2.56rem;
+    }
+
+    .history-item {
+        font-size: 0.75rem;
+        width: 40%;
+        grid-template-columns: 10% auto 10%;
+    }
+
+    .copy-btn {
+        font-size: 0.95rem;
+    }
+
+    .copy-btn:hover {
+        font-size: 1.1rem;
+    }
+}
+
+
+
