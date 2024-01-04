@@ -95,10 +95,6 @@ header {
     cursor: pointer;
 }
 
-.copy-btn:hover {
-    font-size: 1rem;
-}
-
 .info-box {
     background-color: white;
     border-top: 1.4px solid var(--secondary-color);
