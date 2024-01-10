@@ -87,11 +87,8 @@ function Marquee({handleUpdate}) {
     }, [currentSong])
 
     //For a smooth animation effect the Marquee component should contain at least 4 MurqueeText components, and 5 - for screen width > 1000px
-    function getMurqueeText(){
-        let marqueeNumber = 4
-        if (window.innerWidth > 1000){
-            marqueeNumber = 5
-        }
+    function getMarqueeText(){
+        let marqueeNumber = getMarqueeNumber()
 
         let marqueeText = []
         for (let i = 0; i < marqueeNumber; i++){
@@ -100,12 +97,24 @@ function Marquee({handleUpdate}) {
         return marqueeText
     }
 
+    function getMarqueeNumber(){
+        if (window.innerWidth > 1000){
+            return 5
+        } else if (window.innerWidth < 380){
+            return 3
+        } else {
+            return 4
+        }
+    }
+
     return (
         <MarqueeBox  className="info-box"
                      onMouseEnter={() => setIsPaused(true)}
                      onMouseLeave={() => setIsPaused(false)}
+                     onTouchStart={() => setIsPaused(true)}
+                     onTouchEnd={() => setIsPaused(false)}
         >
-            {getMurqueeText()}
+            {getMarqueeText()}
         </MarqueeBox>
     )
 }

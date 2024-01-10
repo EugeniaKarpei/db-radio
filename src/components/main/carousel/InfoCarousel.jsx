@@ -6,8 +6,8 @@ function InfoCarousel(){
     const [currentIndex, setCurrentIndex] = useState(0)
     const [currentItem, setCurrentItem] = useState(null)
     const carouselItemsContent = [
-        <><h1>DZED BARDAITIS <br /> RADIO</h1></>,
-       "date"
+       "date",
+       <><h1>DZED BARDAITIS <br /> RADIO</h1></>
     ]
     
     function getCurentDateTimeInfo(){

@@ -54,6 +54,10 @@ export default function App(){
             
     }, [])
 
+    function isMobile() {
+        return window.innerWidth <= 768
+    }
+
     
     return (
       <>
@@ -64,10 +68,10 @@ export default function App(){
                 toggleHistoryOpened={toggleHistoryOpened}
         />
         <main>
-            <div className="main-content-box" ref={mainRef} onClick={togglePlay}>
+            <div className="main-content-box" ref={mainRef} onClick={() => !isMobile() && togglePlay}>
                 <CentralImage src={centralImageSrc} alt={centralImageAlt}/>
                 <InfoCarousel />
-                {(showCursor && !isHistoryOpened) && 
+                {(!isMobile() && showCursor && !isHistoryOpened) && 
                 <MovingPlayerControls position={cursorPosition}>
                     <PlayerControls isPlaying={isPlaying} togglePlay={togglePlay} lightMode={true}/>
                 </MovingPlayerControls>
