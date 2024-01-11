@@ -37,7 +37,7 @@ function InfoCarousel(){
         const interval = setInterval(updateCurrentItem, 12000)
 
         return () => clearInterval(interval)
-    }, [currentItem])
+    }, [currentItem, currentIndex])
 
     return (
         <div className="info-carousel">

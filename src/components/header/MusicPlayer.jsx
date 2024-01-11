@@ -15,7 +15,7 @@ function MusicPlayer({url, isPlaying, togglePlay}){
                 playerRef.current.pause()
             }
         }
-    }, [isPlaying])
+    }, [isPlaying, url])
 
     // Pause and clean up on unmount
     useEffect(() => {
@@ -24,7 +24,7 @@ function MusicPlayer({url, isPlaying, togglePlay}){
                 playerRef.current.pause()
             }
         }
-      }, [])
+      }, [isPlaying])
 
     return (
         <div className="music-player-box">

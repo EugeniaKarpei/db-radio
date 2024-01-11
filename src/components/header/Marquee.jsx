@@ -84,7 +84,7 @@ function Marquee({handleUpdate}) {
 
         setText((prev) => prev = `${currentSong.song.Artist} - ${currentSong.song.Title}`)
         
-    }, [currentSong])
+    }, [currentSong, handleUpdate])
 
     //For a smooth animation effect the Marquee component should contain at least 4 MurqueeText components, and 5 - for screen width > 1000px
     function getMarqueeText(){

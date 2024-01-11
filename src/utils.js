@@ -22,7 +22,7 @@ function getCurrentMonth(date){
 
 // used to get timestamp from strings with "/Date(1695681039417+0000)/" format
 function getSongStartTime(dateStr){
-    let match = dateStr.match(/\/Date\((\d+)([+\-]\d{4})\)\//)
+    let match = dateStr.match(/\/Date\((\d+)([+-]\d{4})\)\//)
     
     if (match) {
         const timestamp = parseInt(match[1], 10)
