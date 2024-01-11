@@ -9,7 +9,9 @@ function InfoCarousel(){
     function getCurentDateTimeInfo(){
         const date = new Date()
         return (<h1 className="date-time-info">
-                {`It's ${getCurrentDay(date)} ${getCurrentMonth(date)} ${date.getDate()}`}
+                {`It's ${getCurrentDay(date)}`}
+                <br />
+                {`${getCurrentMonth(date)} ${date.getDate()}`}
                 <br />
                 {`${getCurrentTimeStr(date)}`}
                 </h1>

@@ -20,7 +20,7 @@ const MarqueeBox = styled.div `
     
 const MarqueeText = styled.p`
     white-space: nowrap;
-    padding: 0 5rem;
+    padding: 0 4rem;
     animation: ${movertl} 9000ms linear infinite; 
     animation-play-state: ${(props) => (props.paused === "true" ? 'paused' : 'running')}; 
 `
@@ -86,7 +86,7 @@ function Marquee({handleUpdate}) {
         
     }, [currentSong, handleUpdate])
 
-    //For a smooth animation effect the Marquee component should contain at least 4 MurqueeText components, and 5 - for screen width > 1000px
+    //For a smooth animation effect the Marquee component should contain at least 5 MurqueeText components, and 6 - for screen width > 1000px
     function getMarqueeText(){
         let marqueeNumber = getMarqueeNumber()
 
