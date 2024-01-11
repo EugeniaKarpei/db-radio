@@ -54,6 +54,12 @@ export default function App(){
             
     }, [])
 
+    function handleMainClick(){
+        if (!isMobile()){
+            togglePlay()
+        }
+    }
+
     function isMobile() {
         return window.innerWidth <= 768
     }
@@ -68,7 +74,7 @@ export default function App(){
                 toggleHistoryOpened={toggleHistoryOpened}
         />
         <main>
-            <div className="main-content-box" ref={mainRef} onClick={() => !isMobile() && togglePlay}>
+            <div className="main-content-box" ref={mainRef} onClick={handleMainClick}>
                 <CentralImage src={centralImageSrc} alt={centralImageAlt}/>
                 <InfoCarousel />
                 {(!isMobile() && showCursor && !isHistoryOpened) && 

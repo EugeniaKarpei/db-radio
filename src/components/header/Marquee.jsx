@@ -99,11 +99,11 @@ function Marquee({handleUpdate}) {
 
     function getMarqueeNumber(){
         if (window.innerWidth > 1000){
-            return 5
+            return 6
         } else if (window.innerWidth < 380){
             return 3
         } else {
-            return 4
+            return 5
         }
     }
 
