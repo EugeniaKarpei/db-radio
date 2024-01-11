@@ -1,3 +1,8 @@
+const carouselItemsContent = [
+    "date",
+    <><h1>DZED BARDAITIS <br /> RADIO</h1></>
+ ]
+
 function getCurrentTime(){
     return new Date().getTime()
 }
@@ -54,4 +59,4 @@ function getSongDuration(durationStr){
     }
 }
 
-export {getCurrentTime, getSongStartTime, getSongDuration, getSongStartTimeStr, getCurrentTimeStr, getCurrentDay, getCurrentMonth}
+export {getCurrentTime, getSongStartTime, getSongDuration, getSongStartTimeStr, getCurrentTimeStr, getCurrentDay, getCurrentMonth, carouselItemsContent}

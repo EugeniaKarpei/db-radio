@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from "react"
 import CarouselItem from "./CarouselItem"
-import { getCurrentTimeStr, getCurrentDay, getCurrentMonth } from "../../../utils"
+import { getCurrentTimeStr, getCurrentDay, getCurrentMonth, carouselItemsContent } from "../../../utils"
 
 function InfoCarousel(){
     const [currentIndex, setCurrentIndex] = useState(0)
-    const [currentItem, setCurrentItem] = useState(null)
-    const carouselItemsContent = [
-       "date",
-       <><h1>DZED BARDAITIS <br /> RADIO</h1></>
-    ]
+    const [currentItem, setCurrentItem] = useState(null) 
     
     function getCurentDateTimeInfo(){
         const date = new Date()
