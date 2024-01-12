@@ -1,6 +1,6 @@
 const carouselItemsContent = [
     "date",
-    <><h1>DZED BARDAITIS <br /> RADIO</h1></>
+    <><br /><h1>DZED BARDAITIS <br /> RADIO</h1></>
  ]
 
 function getCurrentTime(){
