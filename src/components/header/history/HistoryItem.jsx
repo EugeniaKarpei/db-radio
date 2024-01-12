@@ -5,10 +5,6 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 function HistoryItem({artist, songTitle, startTime, onAir}){
     const itemText = `${artist} - ${songTitle}`
 
-    // function handleClick(){
-    //     navigator.clipboard.writeText(getArtistAndSong())
-    // }
-
     return(
         <div className={`history-item ${onAir && 'light'}`}>
             <p className="history-item-time">{`${startTime}`}</p>

@@ -10,7 +10,7 @@
   }
 
 html, body {
-    height: 100vh;
+    height: 100%;
     user-select: none;
 }
 
@@ -108,7 +108,7 @@ header {
 /* main section styles */
 
 main {
-    padding: 1.875rem 0 1rem;
+    padding: 1.875rem 0 0rem;
     height: 100%;
 }
 
@@ -117,13 +117,14 @@ main {
     text-align: center;
     height: 100%;
     /* padding-top: 1rem; */
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: column; */
 }
 
 .logo-img-box {
     margin-bottom: 1rem;
     margin-top: 0.625rem;
+    /* margin-top: 1.25rem; */
 }
 
 img {
@@ -138,10 +139,10 @@ h1 {
 }
 
 /* styles for carousel component  */
-.info-carousel {
+/* .info-carousel {
     height: 45%;
     
-}
+} */
 
 .carousel-item {
     display: flex;
@@ -224,7 +225,7 @@ span {
 
 @media (min-width: 460px){
     main {
-        padding: 4rem 0;
+        padding: 2rem 0;
         height: 100%;
     }
 

@@ -1,11 +1,11 @@
-import React, { useRef, useEffect, useState } from "react"
+import React, { useRef, useEffect, useState, useCallback } from "react"
 import PlayerControls from "./components/PlayerControls"
 import MovingPlayerControls from "./components/main/MovingPlayerControls"
 import CentralImage from "./components/main/CentralImage"
 import Footer from "./components/Footer"
 import Header from "./components/header/Header"
 import InfoCarousel from "./components/main/carousel/InfoCarousel"
-import { PLAYER_URL, centralImageSrc, centralImageAlt } from "./config"
+import { centralImageSrc, centralImageAlt } from "./config"
 
 export default function App(){
     const [isPlaying, setIsPlaying] = useState(false)
@@ -14,13 +14,21 @@ export default function App(){
     const [cursorPosition, setCursorPosition] = useState({x: 0, y: 0})
     const [isHistoryOpened, setIsHistoryOpened] = useState(false)
 
-    function togglePlay() {
+    const togglePlay = useCallback(() => {
         setIsPlaying(prevValue => !prevValue)
-    }
+    }, [setIsPlaying])
 
-    function toggleHistoryOpened(){
+    // function togglePlay() {
+    //     setIsPlaying(prevValue => !prevValue)
+    // }
+
+    const toggleHistoryOpened = useCallback(() => {
         setIsHistoryOpened(prevValue => !prevValue)
-    }
+    }, [setIsHistoryOpened])
+
+    // function toggleHistoryOpened(){
+    //     setIsHistoryOpened(prevValue => !prevValue)
+    // }
 
     // mousemove, mouseenter, mouseleave events added to the 'div' element inside 'main'. MovingPlayerControls renders if cursor enters div.
     // cursorPosition changes on mousemove. It used by MovingPlayerControls to follow cursor
@@ -67,8 +75,7 @@ export default function App(){
     
     return (
       <>
-        <Header url={PLAYER_URL} 
-                isPlaying={isPlaying} 
+        <Header isPlaying={isPlaying} 
                 togglePlay={togglePlay}
                 isHistoryOpened={isHistoryOpened}
                 toggleHistoryOpened={toggleHistoryOpened}

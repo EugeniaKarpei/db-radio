@@ -1,32 +1,37 @@
-import React, { useState } from "react"
+import React, { useState, useCallback } from "react"
 import MusicPlayer from "./MusicPlayer"
 import Marquee from "./Marquee"
 import HistoryButton from "./history/HistoryButton"
 import HistoryDropdown from "./history/HistoryDropdown"
 import InfoBox from "../InfoBox"
-import { HISTORY_URL } from "../../config"
 
-function Header({url, isPlaying, togglePlay, isHistoryOpened, toggleHistoryOpened}){
+function Header({isPlaying, togglePlay, isHistoryOpened, toggleHistoryOpened}){
     const [historyShouldUpdate, setHistoryShouldUpdate] = useState(false)
 
-    function handleSongUpdate(){
+    const handleSongUpdate = useCallback(() => {
         setHistoryShouldUpdate(prev => prev = true)
-    }
+    }, [setHistoryShouldUpdate])
+    
 
-    function handleHistoryUpdate(){
+    const handleHistoryUpdate = useCallback(() => {
         setHistoryShouldUpdate(prev => prev = false)
-    }
+    }, [setHistoryShouldUpdate])
+    
 
     return (
         <header>
             <div className="header-top-box">
-                <MusicPlayer url={url} isPlaying={isPlaying} togglePlay={togglePlay}/>
+                <MusicPlayer isPlaying={isPlaying} togglePlay={togglePlay}/>
                 <HistoryButton isOpened={isHistoryOpened} onClick={toggleHistoryOpened}/>
             </div>
             {isHistoryOpened && 
             <InfoBox info="streaming history:" className="history-info"/>}
             {isHistoryOpened && 
-            <HistoryDropdown isOpened={isHistoryOpened} shouldUpdate={historyShouldUpdate} handleUpdate={handleHistoryUpdate} url={HISTORY_URL}/>
+            <HistoryDropdown 
+               isOpened={isHistoryOpened} 
+               shouldUpdate={historyShouldUpdate} 
+               handleUpdate={handleHistoryUpdate} 
+            />
             }
             <Marquee handleUpdate={handleSongUpdate}/>
         </header>
