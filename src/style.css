@@ -82,6 +82,7 @@ header {
     overflow: hidden;
     display: flex;
     justify-content: flex-start;
+    white-space: nowrap;
 }
 
 /* history dropdown section */
@@ -93,7 +94,7 @@ header {
 .history-item {
     font-size: 0.685rem;
     display: grid;
-    grid-template-columns: 10% 85% 5%;
+    grid-template-columns: 12% 85% 3%;
     text-align: left;  
     padding: 0.3rem 0;
 }
@@ -131,7 +132,7 @@ main {
 }
 
 img {
-    width: 85%;
+    width: 90%;
     max-width: 400px;
 }
 
@@ -203,7 +204,6 @@ footer {
 
 .footer-info-box {
     padding: 0.625rem 0 0.95rem;
-    /* padding: 1rem 0 1.625rem; */
 }
 
 .footer-info {
@@ -284,7 +284,7 @@ span {
 
     .history-item {
         font-size: 0.75rem;
-        width: 50%;
+        width: 65%;
         grid-template-columns: 13% auto 10%;
     }
 

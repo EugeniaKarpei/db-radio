@@ -19,7 +19,6 @@ const movertl = keyframes`
 // `
     
 const MarqueeText = styled.p`
-    white-space: nowrap;
     padding: 0 5rem;
     animation: ${movertl} 8000ms linear infinite; 
     animation-play-state: ${(props) => (props.paused === "true" ? 'paused' : 'running')}; 
@@ -29,6 +28,7 @@ const MarqueeText = styled.p`
 function Marquee({handleUpdate}) {
     const [isPaused, setIsPaused] = useState(false)
     const [text, setText] = useState("")
+    const [marquee, setMarquee] = useState([])
     const [currentSong, setCurrentSong] = useState({
         song: {
             MediaItemId: 0,
@@ -94,27 +94,29 @@ function Marquee({handleUpdate}) {
         
     }, [currentSong, handleUpdate])
 
-    //For a smooth animation effect the Marquee component should contain at least 5 MurqueeText components, and 6 - for screen width > 1000px
-    function getMarqueeText(){
-        let marqueeNumber = getMarqueeNumber()
+    useEffect(() => {
 
-        let marqueeText = []
-        for (let i = 0; i < marqueeNumber; i++){
-            marqueeText.push(<MarqueeText key={`marquee-text-${i}`} paused={isPaused.toString()}>{text}</MarqueeText>)
+        //For a smooth animation effect the Marquee component should contain at least 3 MurqueeText components, 
+        //and 6 - for screen width > 1000px
+        function getMarqueeNumber(){
+            const currentWidth = window.innerWidth
+            if (currentWidth > 1000){
+                return 6
+            } else if (currentWidth < 380){
+                return 3
+            } else {
+                return 4
+            }
         }
-        return marqueeText
-    }
 
-    function getMarqueeNumber(){
-        const currentWidth = window.innerWidth
-        if (currentWidth > 1000){
-            return 5
-        } else if (currentWidth < 380){
-            return 3
-        } else {
-            return 4
+        let newMarquee = []
+        for (let i = 0; i < getMarqueeNumber(); i++){
+            newMarquee.push(<MarqueeText key={`marquee-text-${i}`} paused={isPaused.toString()}>{text}</MarqueeText>)
         }
-    }
+
+        setMarquee( prev => prev = newMarquee)
+    }, [text, isPaused])
+
 
     return (
         <div className="info-box marquee-box"
@@ -123,7 +125,8 @@ function Marquee({handleUpdate}) {
                      onTouchStart={() => setIsPaused(true)}
                      onTouchEnd={() => setIsPaused(false)}
         >
-            {getMarqueeText()}
+            {/* {getMarqueeText()} */}
+            {marquee}
         </div>
     )
 }
