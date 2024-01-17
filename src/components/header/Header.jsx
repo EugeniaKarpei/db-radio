@@ -5,7 +5,7 @@ import HistoryButton from "./history/HistoryButton"
 import HistoryDropdown from "./history/HistoryDropdown"
 import InfoBox from "../InfoBox"
 
-function Header({isPlaying, togglePlay, isHistoryOpened, toggleHistoryOpened}){
+export default function Header({isPlaying, togglePlay, isHistoryOpened, toggleHistoryOpened}){
     const [historyShouldUpdate, setHistoryShouldUpdate] = useState(false)
 
     const handleSongUpdate = useCallback(() => {
@@ -25,17 +25,14 @@ function Header({isPlaying, togglePlay, isHistoryOpened, toggleHistoryOpened}){
                 <HistoryButton isOpened={isHistoryOpened} onClick={toggleHistoryOpened}/>
             </div>
             {isHistoryOpened && 
-            <InfoBox info="streaming history:" className="history-info"/>}
+            <InfoBox info="streaming history:" className="history-info"/>} 
             {isHistoryOpened && 
             <HistoryDropdown 
-               isOpened={isHistoryOpened} 
-               shouldUpdate={historyShouldUpdate} 
-               handleUpdate={handleHistoryUpdate} 
-            />
-            }
+                isOpened={isHistoryOpened} 
+                shouldUpdate={historyShouldUpdate} 
+                handleUpdate={handleHistoryUpdate}
+            />}
             <Marquee handleUpdate={handleSongUpdate}/>
         </header>
     )
 }
-
-export default Header

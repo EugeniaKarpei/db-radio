@@ -116,9 +116,6 @@ main {
     position: relative;
     text-align: center;
     height: 100%;
-    /* padding-top: 1rem; */
-    /* display: flex;
-    flex-direction: column; */
 }
 
 .logo-img-box {
@@ -140,7 +137,7 @@ h1 {
 
 /* styles for carousel component  */
 /* .info-carousel {
-    height: 45%;
+    
     
 } */
 
@@ -269,8 +266,8 @@ span {
 
     .history-item {
         font-size: 0.75rem;
-        width: 40%;
-        grid-template-columns: 10% auto 10%;
+        width: 50%;
+        grid-template-columns: 13% auto 10%;
     }
 
     .copy-btn {

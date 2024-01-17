@@ -48,6 +48,8 @@ function Marquee({handleUpdate}) {
     // We are updating the currentSong state and calling handleUpdate() to let Header know that song was changed.
     // So if History is opened it should be updated too. 
     useEffect(() => {
+        let timeoutId = null
+
         async function updateSong(){
             const responce = await fetch(CURRENT_TRACK_URL)
             const data = await responce.json()
@@ -62,13 +64,13 @@ function Marquee({handleUpdate}) {
 
         function wait(milliseconds) {
             return new Promise(resolve => {
-                setTimeout(resolve, milliseconds)
+                timeoutId = setTimeout(resolve, milliseconds)
             })
         }
 
         //to avoid frequent requests we wait until the end of song + 2sec, 
         //because currentSong info on server updates a few moments before song starts actually to play in the strim  
-        async function waitNextSong() {
+        async function waitNextSongAndUpdate() {
             let endTime = getSongStartTime(currentSong.song.DatePlayed) + getSongDuration(currentSong.song.Duration)
             while (endTime + 1000 > getCurrentTime()) {
                 await wait(2000); // Wait for 2 second
@@ -79,12 +81,18 @@ function Marquee({handleUpdate}) {
         if (currentSong.song.MediaItemId === 0){
             updateSong()
         } else {
-            waitNextSong()
+            waitNextSongAndUpdate()
         }
 
         setText((prev) => prev = `${currentSong.song.Artist} - ${currentSong.song.Title}`)
+
+        return () => {
+            if (timeoutId){
+                clearTimeout(timeoutId)
+            }
+        }
         
-    }, [currentSong])
+    }, [currentSong, handleUpdate])
 
     //For a smooth animation effect the Marquee component should contain at least 5 MurqueeText components, and 6 - for screen width > 1000px
     function getMarqueeText(){
@@ -98,10 +106,11 @@ function Marquee({handleUpdate}) {
     }
 
     function getMarqueeNumber(){
-        if (window.innerWidth > 1000){
+        const currentWidth = window.innerWidth
+        if (currentWidth > 1000){
             return 5
-        } else if (window.innerWidth < 380){
-            return 3
+        } else if (currentWidth < 380){
+            return 2
         } else {
             return 4
         }

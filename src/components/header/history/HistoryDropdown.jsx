@@ -20,7 +20,7 @@ function HistoryDropdown({shouldUpdate, handleUpdate, isOpened}){
             updateHistory()
         }
 
-    }, [shouldUpdate, isOpened])
+    }, [shouldUpdate, isOpened, handleUpdate])
 
     //There are 5 items in the history dropdown: 4 songs which were previously played and the current song on top. 
     //Current song has "on air" string instead of time in the "start time" column.
