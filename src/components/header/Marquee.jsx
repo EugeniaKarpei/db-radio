@@ -12,16 +12,16 @@ const movertl = keyframes`
     }
     `
 
-const MarqueeBox = styled.div `
-    overflow: hidden;
-    display: flex;
-    justify-content: flex-start;
-`
+// const MarqueeBox = styled.div `
+//     overflow: hidden;
+//     display: flex;
+//     justify-content: flex-start;
+// `
     
 const MarqueeText = styled.p`
     white-space: nowrap;
     padding: 0 5rem;
-    animation: ${movertl} 9000ms linear infinite; 
+    animation: ${movertl} 8000ms linear infinite; 
     animation-play-state: ${(props) => (props.paused === "true" ? 'paused' : 'running')}; 
 `
 
@@ -110,21 +110,21 @@ function Marquee({handleUpdate}) {
         if (currentWidth > 1000){
             return 5
         } else if (currentWidth < 380){
-            return 2
+            return 3
         } else {
             return 4
         }
     }
 
     return (
-        <MarqueeBox  className="info-box"
+        <div className="info-box marquee-box"
                      onMouseEnter={() => setIsPaused(true)}
                      onMouseLeave={() => setIsPaused(false)}
                      onTouchStart={() => setIsPaused(true)}
                      onTouchEnd={() => setIsPaused(false)}
         >
             {getMarqueeText()}
-        </MarqueeBox>
+        </div>
     )
 }
 
