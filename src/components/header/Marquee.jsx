@@ -20,7 +20,7 @@ const movertl = keyframes`
     
 const MarqueeText = styled.p`
     padding: 0 5rem;
-    animation: ${movertl} 8000ms linear infinite; 
+    animation: ${movertl} 5000ms linear infinite; 
     animation-play-state: ${(props) => (props.paused === "true" ? 'paused' : 'running')}; 
 `
 
