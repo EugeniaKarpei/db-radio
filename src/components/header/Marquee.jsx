@@ -10,20 +10,13 @@ const movertl = keyframes`
     100% {
         transform: translateX(-100%);
     }
-    `
-
-// const MarqueeBox = styled.div `
-//     overflow: hidden;
-//     display: flex;
-//     justify-content: flex-start;
-// `
+`
     
 const MarqueeText = styled.p`
     padding: 0 5rem;
     animation: ${movertl} 5000ms linear infinite; 
     animation-play-state: ${(props) => (props.paused === "true" ? 'paused' : 'running')}; 
 `
-
 
 function Marquee({handleUpdate}) {
     const [isPaused, setIsPaused] = useState(false)
@@ -41,7 +34,6 @@ function Marquee({handleUpdate}) {
             DatePlayed: ""
         }
     })
-    
 
     // Marquee shows current song name and the name of an artist. 
     // After the end of each song we are sending requests to API to receive new song info.
@@ -100,7 +92,9 @@ function Marquee({handleUpdate}) {
         //and 6 - for screen width > 1000px
         function getMarqueeNumber(){
             const currentWidth = window.innerWidth
-            if (currentWidth > 1000){
+            if (currentWidth > 1600){
+                return 7
+            }else if (currentWidth > 1000){
                 return 6
             } else if (currentWidth < 380){
                 return 3
@@ -125,7 +119,6 @@ function Marquee({handleUpdate}) {
                      onTouchStart={() => setIsPaused(true)}
                      onTouchEnd={() => setIsPaused(false)}
         >
-            {/* {getMarqueeText()} */}
             {marquee}
         </div>
     )

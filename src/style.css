@@ -112,6 +112,10 @@ header {
     padding: 0.25em 0;
 }
 
+.info-box p {
+    font-size: 0.875rem;
+}
+
 /* main section styles */
 
 main {
@@ -293,5 +297,34 @@ span {
     }
 }
 
+@media (min-width: 1200px){
+
+    .history-item {
+        font-size: 0.85rem;
+        width: 60%;
+        grid-template-columns: 10% auto 30%;
+    }
+
+    .info-box p {
+        font-size: 1rem;
+    }
+
+    .logo-img-box {
+        padding: 11rem 0 3rem;
+    }
+
+    img {
+        max-width: 480px;
+    }
+
+    h1 {
+        font-size: 2.85rem;
+    }
+
+    .footer-info {
+        font-size: 0.725rem;
+    }
+
+}
 
 
