@@ -18,17 +18,11 @@ export default function App(){
         setIsPlaying(prevValue => !prevValue)
     }, [setIsPlaying])
 
-    // function togglePlay() {
-    //     setIsPlaying(prevValue => !prevValue)
-    // }
 
     const toggleHistoryOpened = useCallback(() => {
         setIsHistoryOpened(prevValue => !prevValue)
     }, [setIsHistoryOpened])
 
-    // function toggleHistoryOpened(){
-    //     setIsHistoryOpened(prevValue => !prevValue)
-    // }
 
     // mousemove, mouseenter, mouseleave events added to the 'div' element inside 'main'. MovingPlayerControls renders if cursor enters div.
     // cursorPosition changes on mousemove. It used by MovingPlayerControls to follow cursor
@@ -82,7 +76,7 @@ export default function App(){
         />
         <main>
             <div className="main-content-box" ref={mainRef} onClick={handleMainClick}>
-                <CentralImage src={centralImageSrc} alt={centralImageAlt}/>
+                <CentralImage src={centralImageSrc} alt={centralImageAlt} isHistoryOpened={isHistoryOpened}/>
                 <InfoCarousel />
                 {(!isMobile() && showCursor && !isHistoryOpened) && 
                 <MovingPlayerControls position={cursorPosition}>

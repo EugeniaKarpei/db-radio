@@ -8,12 +8,10 @@ function InfoCarousel(){
     
     function getCurentDateTimeInfo(){
         const date = new Date()
-        return (<h1 className="date-time-info">
-                {`It's ${getCurrentDay(date)}`}
+        return (<h1 className="date-time-info carusel-item-text">
+                {`It's ${getCurrentDay(date)} ${getCurrentTimeStr(date)}`}
                 <br />
                 {`${getCurrentMonth(date)} ${date.getDate()}`}
-                <br />
-                {`${getCurrentTimeStr(date)}`}
                 </h1>
         )
     }

@@ -15,12 +15,14 @@ const movertl = keyframes`
 const MarqueeText = styled.p`
     padding: 0 5rem;
     animation: ${movertl} 5000ms linear infinite; 
-    animation-play-state: ${(props) => (props.paused === "true" ? 'paused' : 'running')}; 
+    animation-play-state: ${(props) => (props.$paused === "true" ? 'paused' : 'running')}; 
 `
 
 function Marquee({handleUpdate}) {
     const [isPaused, setIsPaused] = useState(false)
     const [text, setText] = useState("")
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+    const [marqueeElementsNumber, setMarqueeElementsNumber] = useState(null)
     const [marquee, setMarquee] = useState([])
     const [currentSong, setCurrentSong] = useState({
         song: {
@@ -34,6 +36,20 @@ function Marquee({handleUpdate}) {
             DatePlayed: ""
         }
     })
+
+    useEffect(() => {
+        function updateWindowWidth(){
+            setWindowWidth(window.innerWidth)
+            console.log(windowWidth)
+        }
+
+        window.addEventListener('resize', updateWindowWidth)
+
+        return () => {
+            window.removeEventListener('resize', updateWindowWidth)
+        }
+
+    }, [windowWidth])
 
     // Marquee shows current song name and the name of an artist. 
     // After the end of each song we are sending requests to API to receive new song info.
@@ -87,29 +103,31 @@ function Marquee({handleUpdate}) {
     }, [currentSong, handleUpdate])
 
     useEffect(() => {
+        if (text !== ""){
+            const canvas = document.createElement('canvas')
+            const context = canvas.getContext('2d')
+            context.font = '16px Rubik, sans-serif'
+            // Measure the text
+            const textWidth = context.measureText(text).width
+            setMarqueeElementsNumber(Math.ceil(windowWidth/(textWidth + 160)) + 1)
+        }
 
-        //For a smooth animation effect the Marquee component should contain at least 3 MurqueeText components, 
-        //and 6 - for screen width > 1000px
-        function getMarqueeNumber(){
-            const currentWidth = window.innerWidth
-            if (currentWidth > 1600){
-                return 7
-            }else if (currentWidth > 1000){
-                return 6
-            } else if (currentWidth < 380){
-                return 3
-            } else {
-                return 4
+    }, [windowWidth, text])
+
+    //For a smooth animation effect the Marquee component should contain different number of text components
+    //depending on screen width
+    useEffect(() => { 
+        if (text !== ""){
+
+            let newMarquee = []
+            for (let i = 0; i < marqueeElementsNumber; i++){
+                newMarquee.push(<MarqueeText key={`marquee-text-${i}`} $paused={isPaused.toString()}>{text}</MarqueeText>)
             }
+    
+            setMarquee( prev => prev = newMarquee)
         }
-
-        let newMarquee = []
-        for (let i = 0; i < getMarqueeNumber(); i++){
-            newMarquee.push(<MarqueeText key={`marquee-text-${i}`} paused={isPaused.toString()}>{text}</MarqueeText>)
-        }
-
-        setMarquee( prev => prev = newMarquee)
-    }, [text, isPaused])
+        
+    }, [text, isPaused, marqueeElementsNumber])
 
 
     return (
